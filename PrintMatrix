@@ -1,0 +1,32 @@
+# -*-coding:utf-8-*- 
+# @Time    : 2018/8/17 0017 14:00
+# @Author  : dshowing
+# @Project : Daily_code
+# @FileName: ClassMatrix.py
+# @Software: PyCharm
+
+class Solution:
+    # 输入矩阵，返回列表
+    def printmatrix(self, matrix):
+        if len(matrix) == 0:
+            return []
+        res = []
+        number = len(matrix) * len(matrix[0])
+        res.extend(matrix[0])
+        # 判断是否为多行矩阵
+        while len(res) < number:
+            # 删除第一行
+            matrix.pop(0)
+            matrix = self.turn(matrix)
+            res.extend(matrix[0])
+        return res
+    def turn(self, mat):
+        if len(mat) == 0:
+            return
+        turned_lst = [([0] * len(mat)) for i in range(len(mat[0]))]
+        for i in range(len(mat)):
+            for j in range(len(mat[0])):
+                turned_lst[j][i] = mat[i][len(mat[0])-1-j]
+        return turned_lst
+
+
